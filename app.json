@@ -12,9 +12,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mckaymichael.catechismnative"
     },
     "android": {
+      "package": "com.mckaymichael.catechismnative",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,6 +26,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a0a7cb86-7520-4d03-b2e6-a8d653ea0c1e"
+      }
     }
   }
 }

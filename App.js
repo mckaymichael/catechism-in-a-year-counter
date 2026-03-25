@@ -55,6 +55,13 @@ export default function App() {
         <View style={styles.contentSection}>
           <Text style={styles.episodeTitle}>{episode?.title}</Text>
           
+          {episode?.paragraphs && (
+            <View style={styles.paragraphsContainer}>
+              <Text style={styles.paragraphsLabel}>Paragraphs</Text>
+              <Text style={styles.paragraphsText}>{episode.paragraphs}</Text>
+            </View>
+          )}
+
           <View style={styles.contentGroup}>
             <Text style={styles.sectionHeading}>Summary</Text>
             <Text style={styles.bodyText}>{episode?.summary}</Text>
@@ -69,21 +76,6 @@ export default function App() {
               </View>
             ))}
           </View>
-        </View>
-
-        <View style={styles.historySection}>
-          <Text style={styles.historyHeading}>Previous Episodes</Text>
-          {[1, 2, 3].map(offset => {
-            const day = currentDay - offset;
-            if (day < 1) return null;
-            const histEp = episodes.find(e => e.day === day) || { title: `Day ${day} Reading` };
-            return (
-              <View key={day} style={styles.historyItem}>
-                <Text style={styles.historyDay}>Day {day}</Text>
-                <Text style={styles.historyTitle}>{histEp.title}</Text>
-              </View>
-            );
-          })}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -164,8 +156,28 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
     color: '#1A1A1A',
-    marginBottom: 24,
+    marginBottom: 12,
     fontStyle: 'italic',
+  },
+  paragraphsContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginBottom: 24,
+  },
+  paragraphsLabel: {
+    fontSize: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    color: '#B45309',
+    fontWeight: '700',
+    marginRight: 8,
+  },
+  paragraphsText: {
+    fontSize: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    color: '#B45309',
+    fontWeight: '700',
   },
   contentGroup: {
     marginBottom: 24,
@@ -192,31 +204,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#B45309',
     marginRight: 8,
-  },
-  historySection: {
-    borderTopWidth: 1,
-    borderTopColor: '#E5E5E5',
-    paddingTop: 32,
-  },
-  historyHeading: {
-    fontSize: 18,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
-    color: '#1A1A1A',
-    marginBottom: 16,
-  },
-  historyItem: {
-    flexDirection: 'row',
-    marginBottom: 12,
-  },
-  historyDay: {
-    width: 60,
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#B45309',
-  },
-  historyTitle: {
-    fontSize: 14,
-    color: '#666',
-    flex: 1,
   },
 });
